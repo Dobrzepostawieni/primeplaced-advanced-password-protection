@@ -1,0 +1,106 @@
+// --- assets/src/styles/_root.scss ---
+@use "sass:map";
+@use "sass:color";
+@use "./variables" as *;
+
+@mixin ppadvp-styles-root {
+
+	:root {
+		--ppadvp-color-primary: #{$primary};
+		--ppadvp-color-primary-rgb: #{get-rgb-values($primary)};
+
+		--ppadvp-color-primary-dark: #{$primary-dark};
+		--ppadvp-color-primary-dark-rgb: #{get-rgb-values($primary-dark)};
+
+		--ppadvp-color-primary-lighter: #{$primary-lighter};
+
+		--ppadvp-gradient: linear-gradient(
+			135deg,
+			var(--ppadvp-color-primary) 0%,
+			var(--ppadvp-color-primary-dark) 100%
+		);
+
+		--ppadvp-theme-color-primary: var(--ppadvp-color-primary);
+		--ppadvp-theme-color-primary-rgb: var(--ppadvp-color-primary-dark-rgb);
+		--ppadvp-theme-color-primary-dark: var(--ppadvp-color-primary-dark);
+		--ppadvp-theme-color-primary-dark-rgb: var(--ppadvp-color-primary-dark-rgb);
+		--ppadvp-theme-color-primary-lighter: var(--ppadvp-color-primary-lighter);
+
+		--ppadvp-theme-gradient: var(--ppadvp-gradient);
+
+		--ppadvp-font-size-x-small: 11px;
+		--ppadvp-font-size-small: 12px;
+		--ppadvp-font-size-medium: 13px; 
+		--ppadvp-font-size-large: 15px;
+		--ppadvp-font-size-x-large: 20px;
+		--ppadvp-font-size-2x-large: 32px;
+		--ppadvp-font-size-custom: 18px;
+
+		--ppadvp-line-height-x-small: 16px;
+		--ppadvp-line-height-small: 20px;
+		--ppadvp-line-height-medium: 24px;
+		--ppadvp-line-height-large: 28px;
+		--ppadvp-line-height-x-large: 32px;
+		--ppadvp-line-height-2x-large: 40px;
+		--ppadvp-line-height-custom: 20px;
+
+		--ppadvp-grid-base: 8px;
+
+		--ppadvp-space-05: calc(var(--ppadvp-grid-base) * 0.5); /* 4px */
+		--ppadvp-space-10: calc(var(--ppadvp-grid-base) * 1);   /* 8px */
+		--ppadvp-space-15: calc(var(--ppadvp-grid-base) * 1.5); /* 12px */
+		--ppadvp-space-20: calc(var(--ppadvp-grid-base) * 2);   /* 16px */
+		--ppadvp-space-30: calc(var(--ppadvp-grid-base) * 3);   /* 24px */
+		--ppadvp-space-40: calc(var(--ppadvp-grid-base) * 4);   /* 32px */
+		--ppadvp-space-50: calc(var(--ppadvp-grid-base) * 5);   /* 40px */
+		--ppadvp-space-60: calc(var(--ppadvp-grid-base) * 6);   /* 48px */
+		--ppadvp-space-70: calc(var(--ppadvp-grid-base) * 7);   /* 56px */
+		--ppadvp-space-80: calc(var(--ppadvp-grid-base) * 8);   /* 64px */
+
+		--ppadvp-default-block-margin: calc(var(--ppadvp-grid-base) * 3.5);
+
+		@include break-medium {
+
+			--ppadvp-font-size-x-small: 12px;
+			--ppadvp-font-size-small: 14px;
+			--ppadvp-font-size-medium: 16px; 
+			--ppadvp-font-size-large: 18px;
+
+			--ppadvp-line-height-x-small: 18px;
+			--ppadvp-line-height-small: 22px;
+			--ppadvp-line-height-medium: 26px;
+			--ppadvp-line-height-large: 32px;
+		
+		}
+
+		@include break-small {
+			--ppadvp-font-size-x-small: 13px;
+			--ppadvp-font-size-small: 15px;
+
+			--ppadvp-line-height-x-small: 20px;
+			--ppadvp-line-height-small: 24px;
+		}
+	}
+}
+
+@mixin ppadvp-styles-pro-root {
+
+	@each $tier, $colors in $theme-tiers {
+		.ppadvp-modal .is-#{$tier},
+		.ppadvp-settings-panel .is-#{$tier},
+		#ppadvp-admin-root .is-#{$tier},
+		#ppadvp-widget-root .is-#{$tier},
+		#ppadvp-pricing-root .is-#{$tier} {
+			--ppadvp-theme-color-primary: #{map.get($colors, "base")};
+			--ppadvp-theme-color-primary-rgb: #{map.get($colors, "rgb")};
+			--ppadvp-theme-color-primary-dark: #{map.get($colors, "dark")};
+			--ppadvp-theme-color-primary-dark-rgb: #{map.get($colors, "dark-rgb")};
+
+			--ppadvp-theme-gradient: linear-gradient(
+				135deg,
+				var(--ppadvp-theme-color-primary) 0%,
+				var(--ppadvp-theme-color-primary-dark) 100%
+			);
+		}
+	}
+}

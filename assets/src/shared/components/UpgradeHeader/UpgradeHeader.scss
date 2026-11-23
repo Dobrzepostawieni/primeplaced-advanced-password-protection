@@ -1,0 +1,100 @@
+// --- assets/src/shared/components/UpgradeHeader/UpgradeHeader.scss ---
+@use "styles/variables" as *;
+@use "styles/helpers" as helpers;
+
+.ppadvp-upgrade {
+
+	@include helpers.ppadvp-scope {
+
+		&-hero {
+			background: var(--ppadvp-theme-gradient);
+			border-radius: $radius-medium;
+			padding: $grid-unit-60 $grid-unit-30;
+			text-align: center;
+			animation: ppadvpSettingsCard 0.2s ease-out;
+			animation-fill-mode: forwards;
+
+			h2 {
+				margin-block-start: 0;
+				margin-block-end: 2px;
+				color: $white;
+				font-weight: $font-weight-bold;
+
+				@include heading-2x-large();
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: $grid-unit-10;
+
+				svg {
+					width: calc(#{$icon-size} * 1.75);
+					min-width: calc(#{$icon-size} * 1.75);
+					height: calc(#{$icon-size} * 1.75);
+					fill: currentcolor;
+				}
+
+				@include break-medium {
+					flex-direction: column;
+				}
+			}
+
+			p {
+				color: $white;
+
+				@include body-large();
+			}
+
+			&-btns {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: $grid-unit-20;
+
+				@include break-medium {
+					flex-direction: column;
+				}
+			}
+		}
+	}
+}
+
+.ppadvp-button.is-white {
+
+	@include helpers.ppadvp-scope {
+
+		&.is-primary:not(.is-pro) { 
+			--ppadvp-btn-bg: #{$white};
+			--ppadvp-btn-border: #{$white};
+			--ppadvp-btn-color: var(--ppadvp-theme-color-primary);
+
+			&:not(:disabled, [aria-disabled="true"]) {
+				--ppadvp-btn-shadow: 0 2px 8px rgba(255, 255, 255, 0.25);
+			}
+
+			--ppadvp-btn-hover-bg: #f0f0ff;
+			--ppadvp-btn-hover-border: #{$white};
+			--ppadvp-btn-hover-shadow: 0 4px 12px rgba(255, 255, 255, 0.35);
+			--ppadvp-btn-hover-transform: translateY(-2px);
+		}
+
+		&.is-tertiary {
+			--ppadvp-btn-bg: transparent;
+			--ppadvp-btn-color: #{$white};
+
+			&:not(:disabled, [aria-disabled="true"]) {
+				--ppadvp-btn-shadow: 0 2px 8px rgba(255, 255, 255, 0.25);
+			}
+
+			--ppadvp-btn-hover-bg: rgba(255, 255, 255, 0.1);
+			--ppadvp-btn-hover-border: #{$white};
+			--ppadvp-btn-hover-shadow: 0 4px 12px rgba(255, 255, 255, 0.35);
+			--ppadvp-btn-hover-color: #{$white};
+		}
+
+		height: 42px;
+		--ppadvp-btn-padding: #{$grid-unit-20} #{$grid-unit-30};
+
+		@include heading-large();
+		font-weight: $font-weight-bold;
+	}
+}

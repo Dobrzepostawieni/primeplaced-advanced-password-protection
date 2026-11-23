@@ -1,0 +1,11 @@
+/* stylelint-disable selector-class-pattern */
+@use "styles/variables" as *;
+@use "styles/helpers" as helpers;
+
+.ppadvp-datatable__head {
+
+	@include helpers.ppadvp-scope {
+
+		content: "";
+	}
+}

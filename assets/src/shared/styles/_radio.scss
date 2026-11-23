@@ -1,0 +1,149 @@
+/* stylelint-disable selector-class-pattern */
+@use "styles/variables" as *;
+@use "styles/helpers" as helpers;
+
+@mixin ppadvp-radio-base {
+
+	.ppadvp-radio-control {
+		display: grid;
+		grid-template-areas:
+			"toggle title"
+			"toggle desc";
+		grid-template-columns: min-content 1fr;
+		column-gap: $grid-unit-15;
+		align-items: center;
+		border: 2px solid $gray-200;
+		border-radius: $radius-medium;
+		padding: $grid-unit-20;
+
+		transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+		@include helpers.ppadvp-scope {
+
+			&-label {
+				margin: 0;
+				margin-block-end: $grid-unit-05;
+				color: $gray-900;
+				
+				@include heading-medium;
+				font-weight: $font-weight-bold;
+			}	
+		}
+
+		&:has(input:checked) {
+			border-color: var(--ppadvp-color-primary);
+			background-color: var(--ppadvp-color-primary-lighter);
+		}
+
+		.components-base-control__label {
+			display: none;
+		}
+
+		.components-radio-control__group-wrapper,
+		.components-radio-control__option {
+			display: contents;
+		}
+
+		.components-radio-control__input {
+			grid-area: toggle;
+			border-color: $black;
+			background-color: $white;
+
+			&::before {
+				transition: border-color 0.2s ease-in-out;
+			}
+
+			&[type="radio"]:checked {
+				background-color: $white;
+				border: $border-width solid var(--ppadvp-color-primary);
+
+				&::before {
+					border-color: var(--ppadvp-color-primary);
+				}
+			}
+		}
+
+		.components-radio-control__label {
+			grid-area: title;
+			color: $gray-900;
+			font-weight: $font-weight-bold;
+
+			@include heading-medium;
+		}
+
+		.components-base-control__help {
+			grid-area: desc;
+			margin-block-start: 0;
+			// color: $gray-700; WCAG insufficient-contract
+			color: #6f6f6f;
+
+			@include body-small;
+		}
+
+		&.has-icon {
+			grid-template-areas:
+				"toggle icon title"
+				"toggle icon desc";
+			grid-template-columns: min-content min-content 1fr;
+
+			.components-radio-control__option {
+
+				&::after {
+					content: "";
+					grid-area: icon;
+
+					width: $icon-size * 1.25;
+					height: $icon-size * 1.25;
+
+					border-radius: $radius-medium;
+
+					background-color: $gray-400;
+					transition: background-color 0.2s ease-in-out;
+
+					@include break-large {
+						width: $icon-size * 1.5;
+						height: $icon-size * 1.5;
+					}
+				}
+
+				&::before {
+					content: "";
+					grid-area: icon;
+					margin: auto;
+
+					width: $icon-size * 0.75;
+					height: $icon-size * 0.75;
+					
+					background-color: $gray-700;
+					transition: background-color 0.2s ease-in-out;
+
+					-webkit-mask-image: var(--ppadvp-radio-control-icon-mask);
+					mask-image: var(--ppadvp-radio-control-icon-mask);
+					
+					-webkit-mask-size: contain;
+					mask-size: contain;
+					-webkit-mask-repeat: no-repeat;
+					mask-repeat: no-repeat;
+					-webkit-mask-position: center;
+					mask-position: center;
+
+					@include break-large {
+						width: $icon-size;
+						height: $icon-size;
+					}
+				}
+
+				&:has(input:checked) {
+
+					&::after {
+						background-color: var(--ppadvp-color-primary);
+					}
+
+					&::before {
+						background-color: $white;
+					}
+				}
+			}
+		}
+	}
+}

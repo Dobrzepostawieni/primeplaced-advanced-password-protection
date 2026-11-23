@@ -1,0 +1,60 @@
+{
+	"compilerOptions": {
+		"target": "ES6",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"jsx": "react-jsx",
+		"noImplicitAny": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"allowJs": true,
+		"checkJs": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"noEmit": true,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"sourceMap": true,
+		"strict": true,
+		"types": [
+			"node",
+			"react"
+		],
+		"paths": {
+			"@pro/*": [
+				"./assets/src/pro/*"
+			],
+			"@admin/*": [
+				"./assets/src/admin/*"
+			],
+			"@front/*": [
+				"./assets/src/front/*"
+			],
+			"@shared/*": [
+				"./assets/src/shared/*"
+			],
+			"@features/*": [
+				"./assets/src/admin/features/*"
+			],
+			"@components/*": [
+				"./assets/src/admin/components/*"
+			],
+			"@styles/*": [
+				"./assets/src/styles/*"
+			],
+			"@images/*": [
+				"./assets/images/*"
+			],
+			"@config/*": [
+				"./config/*"
+			]
+		}
+	},
+	"include": [
+		"assets/src/**/*"
+	],
+	"exclude": [
+		"**/*.test.ts",
+		"**/*.test.tsx"
+	]
+}

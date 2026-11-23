@@ -1,0 +1,216 @@
+/* stylelint-disable scss/selector-no-redundant-nesting-selector */
+/* stylelint-disable selector-class-pattern */
+@use "styles/variables" as *;
+@use "styles/helpers" as helpers;
+
+@keyframes ppadvp-panel-body {
+
+	0% {
+		grid-template-rows: 0fr;
+		padding-block: 0;
+		gap: 0;
+		opacity: 0;
+	}
+	
+	40% {
+		opacity: 0.2;
+	}
+
+	100% {  
+		grid-template-rows: 1fr;
+		padding-block: $grid-unit-20;
+		gap: $grid-unit-10;
+		opacity: 1;
+	}
+}
+
+@mixin ppadvp-panel {
+
+	.ppadvp-panel {
+
+		@include helpers.ppadvp-scope {
+			height: 100%;
+
+			border: $border-width solid $gray-200;
+			border-radius: $radius-medium;
+
+			display: flex;
+			flex-direction: column;
+
+			&-body {
+				display: grid;
+    
+				grid-template-columns: 100%;
+   	 			grid-template-rows: 0fr;
+
+				overflow: hidden;
+				
+            	padding-block: 0;
+            	padding-inline: $grid-unit-20;
+            	gap: 0;
+            	opacity: 0;
+
+				animation: ppadvp-panel-body 0.2s ease-in-out forwards;
+
+				& > div {
+					min-height: 0;
+					display: flex;
+					flex-direction: column;
+				}
+
+				@keyframes ppadvp-panel-body {
+
+					0% {
+						grid-template-rows: 0fr;
+						padding-block: 0;
+						gap: 0;
+						opacity: 0;
+					}
+					
+					40% {
+						opacity: 0.2;
+					}
+
+					100% {  
+						grid-template-rows: 1fr;
+						padding-block: $grid-unit-20;
+						gap: $grid-unit-10;
+						opacity: 1;
+					}
+				}
+
+				&:not(:last-of-type) {
+					padding-bottom: 0;
+				}
+			}
+
+			.components-panel__body {
+				padding: 0;
+				margin-top: 0;
+				border-bottom: 0;
+
+				&:first-of-type {
+					border-top: 0;
+				}
+
+				&.is-opened {
+					background-color: rgba($gray-100, 0.25);
+
+					.components-panel__body-toggle {
+						box-shadow: $elevation-x-small;
+						background-color: var(--ppadvp-color-primary-lighter);
+						color: var(--ppadvp-color-primary);
+
+						/* stylelint-disable-next-line no-descending-specificity */
+						.components-panel__arrow {
+							fill: var(--ppadvp-color-primary);
+						}
+					}
+
+					& > .components-panel__body-title {
+						margin: 0;
+					}
+				}
+
+				/* stylelint-disable-next-line no-descending-specificity */
+				&-title {
+					margin: 0;
+					transition: all 0.2s;
+
+					// @TODO make mixin for :hover with media and fallback focus
+					@media (hover:hover) {
+
+						&:hover {
+							background-color: rgba($gray-100, 0.55);
+							transform: translateY(-2px);
+
+							.components-panel__body-toggle {
+								color: var(--ppadvp-color-primary);
+								box-shadow: $elevation-x-small;
+
+								.components-panel__arrow {
+									fill: var(--ppadvp-color-primary);
+								}
+							}
+						}
+					}
+
+					&:has(.components-panel__body-toggle:focus) {
+						background-color: rgba($gray-100, 0.55);
+					}
+
+					.components-panel__body-toggle:focus {
+						background: transparent;
+						color: var(--ppadvp-color-primary);
+
+						.components-panel__arrow {
+							fill: var(--ppadvp-color-primary);
+						}
+					}
+				}
+
+				/* stylelint-disable-next-line no-descending-specificity */
+				&-toggle {
+					flex-direction: row-reverse;
+					justify-content: flex-end;
+					transition: all 0.2s;
+
+					@include body-medium();
+					padding-block: $grid-unit-15;
+					padding-inline: $grid-unit-15;
+
+					/* stylelint-disable-next-line no-descending-specificity */
+					.components-panel__arrow {
+						order: 1;
+						transition: all 0.2s;
+						margin: -2px 0 -2px 0;
+						color: var(--ppadvp-color-primary);
+
+						width: $icon-size * 1.333;
+						height: $icon-size * 1.333;
+
+						@include break-medium {
+							width: $icon-size * 1.5;
+							height: $icon-size * 1.5;
+						}
+					}
+
+					.components-panel__icon {
+						margin: -2px 6px -2px 0;
+						color: inherit;
+					}
+				}
+			}
+
+			.components-panel__row {
+				display: grid;
+    
+				grid-template-columns: 100%;
+				grid-template-rows: 0fr;
+
+				overflow: hidden;
+
+				padding-block: 0;
+				padding-inline: $grid-unit-20;
+				gap: 0;
+				opacity: 0;
+
+				animation: ppadvp-panel-body 0.2s ease-in-out forwards;
+
+				&:not(:last-of-type) {
+					padding-bottom: 0;
+				}
+
+			
+
+				& > div {
+					width: 100%;
+				}
+
+				& > * {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

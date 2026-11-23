@@ -1,0 +1,18 @@
+/* stylelint-disable selector-class-pattern */
+@use "styles/variables" as *;
+@use "styles/helpers" as helpers;
+
+.ppadvp-confirmation-modal {
+
+	@include helpers.ppadvp-scope {
+
+		&__text {
+			color: $gray-900;
+
+			@include body-medium;
+
+			margin-block: $grid-unit-20;
+		}
+
+	}
+}

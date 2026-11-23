@@ -1,0 +1,91 @@
+/* stylelint-disable selector-class-pattern */
+@use "styles/variables" as *;
+
+.ppadvp-notices-portal-root {
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    z-index: 99999; 
+    pointer-events: none; 
+
+	.ppadvp-snackbar-list {
+		pointer-events: auto;
+
+		position: fixed;
+		
+		bottom: 20px;
+		left: calc(160px + 20px);
+
+		width: fit-content;
+
+		.ppadvp-notice {
+			padding-inline: $grid-unit-30;
+			padding-block: $grid-unit-20;
+
+			@include body-large;
+
+			.components-snackbar__dismiss-button {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				width: $icon-size * 0.75;
+				height: $icon-size * 0.75;
+				margin-inline-start: $grid-unit-20;
+
+				@include break-large {
+					width: $icon-size;
+					height: $icon-size;
+				}
+
+				@include break-small {
+					width: 32px;
+					height: 32px;
+					font-size: 32px;
+				}
+			}
+
+			.components-snackbar__content {
+				align-items: center;
+			}
+		}
+
+		.is-success {
+			background-color: $alert-ppadvp-green;
+		}
+
+		.is-error {
+			background-color: $alert-red;
+		}
+
+		.is-warning {
+			background-color: $alert-yellow;
+		}
+
+		.is-info {
+			background-color: $alert-blue;
+		}
+
+		.is-default {
+			z-index: 100001;
+		}
+
+		@include break-large {
+			left: calc(36px + 20px);
+		}
+
+		@include break-medium {
+			left: 10px;
+			bottom: 10px;
+		}
+
+		@include break-small {
+			bottom: unset;
+			top: 10px;
+			width: calc(100% - 20px);
+		}
+	}
+}
+

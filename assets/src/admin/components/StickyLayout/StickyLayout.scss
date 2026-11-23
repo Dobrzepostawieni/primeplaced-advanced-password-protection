@@ -1,0 +1,130 @@
+@use "styles/variables" as *;
+@use "styles/helpers" as helpers;
+
+.ppadvp-sticky-layout-section {
+
+	@include helpers.ppadvp-scope {
+
+		&:not(.ppadvp-is-active) {
+
+			.ppadvp-settings-card-header {
+				animation: ppadvpFadeInTop 0.2s ease-out forwards;
+			}
+		}
+
+		&.ppadvp-is-active {
+
+			.ppadvp-settings-card-header {
+				opacity: 0;
+				pointer-events: none;
+			}
+		}
+	}
+}
+
+.ppadvp-settings-card.ppadvp-sticky-layout-top {
+
+	@include helpers.ppadvp-scope { 
+		position: sticky;
+		z-index: 100;
+		top: calc(32px + $grid-unit-20); 
+		min-height: 70px;
+		transition: all 0.2s ease-in-out;
+
+		@include break-small {
+			top: $grid-unit-05;
+		}
+
+		&.ppadvp-is-sticky {
+			box-shadow: $elevation-medium; 
+			// @TODO / @V 2.0 Make it not visible, only appear on scroll.
+			// animation: ppadvpFadeInTop 0.2s ease-out forwards;
+		}
+
+		// &:not(.ppadvp-is-sticky) {
+		// 	animation: ppadvpFadeOutTop 0.2s ease-out forwards;
+		// }
+
+		.ppadvp-sticky-layout-actions {
+			display: flex;
+			align-items: center;
+			gap: $grid-unit-15;
+		}
+
+		.ppadvp-button {
+			opacity: 0;
+			animation: ppadvpFadeInBottom 0.2s ease-out forwards;
+		}
+
+		.ppadvp-breadcrumb-title {
+
+			@include break-medium {
+				opacity: 0;
+				transition: all 0.2s ease-in-out;
+				animation: ppadvpFadeInRight 0.2s ease-out forwards;
+			}
+		}
+
+		.ppadvp-breadcrumb-icon {
+			transition: all 0.2s ease-in-out;
+			animation: ppadvpFadeInRight 0.2s ease-out forwards;
+		}
+
+		.ppadvp-active-section {
+			display: flex;
+			align-items: center;
+			transition: all 0.2s ease-in-out;
+			opacity: 0;
+			transform: translateX(calc($grid-unit-15 * -1));
+			animation: ppadvpFadeInBottom 0.2s ease-out forwards;
+		}
+	}
+}
+
+.ppadvp-settings-card.ppadvp-sticky-layout-bottom {
+
+	@include helpers.ppadvp-scope { 
+		position: sticky;
+		bottom: $grid-unit-20;
+		transition: all 0.2s ease-in-out;
+		z-index: 99;
+
+		&.ppadvp-is-sticky {
+			box-shadow: $elevation-medium; 
+		}
+
+		@include break-small {
+			bottom: $grid-unit-05;
+		}
+	}
+}
+
+@keyframes ppadvpFadeInRight {
+
+	from { opacity: 0; transform: translateX(calc($grid-unit-15 * -1)); }
+
+	to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes ppadvpFadeInBottom {
+
+	from { opacity: 0; transform: translateY(calc($grid-unit-15)); }
+
+	to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ppadvpFadeOutTop {
+
+	from { opacity: 1; transform: translateY(0); }
+
+	to { opacity: 0; transform: translateY(calc($grid-unit-15 * -1)); }
+
+}
+
+@keyframes ppadvpFadeInTop {
+
+	from { opacity: 0; transform: translateY(calc($grid-unit-15 * -1)); }
+
+	to { opacity: 1; transform: translateY(0); }
+}
+

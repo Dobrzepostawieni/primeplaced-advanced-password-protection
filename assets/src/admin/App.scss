@@ -1,0 +1,190 @@
+/* stylelint-disable selector-class-pattern */
+/* stylelint-disable no-descending-specificity */
+@use "styles/variables" as *;
+@use "styles/root" as *;
+@use "shared/styles" as shared;
+@use "shared/LockScreen/styles" as *;
+@use "styles/pricing";
+@include ppadvp-styles-root;
+@include ppadvp-styles-pro-root;
+
+.ppadvp-admin-notice {
+	margin-left: 0;
+	margin-block-start: $grid-unit-20;
+	margin-block-end: $default-block-margin;
+
+	@include break-small {
+		margin-inline-end: $grid-unit-20;
+	}
+}
+
+.ppadvp-main-layout {
+	background-color: $white;
+	border-radius: $radius-medium;
+	box-shadow: $elevation-x-small;
+	border: $border-width solid $gray-200;
+}
+
+.ppadvp-main-content {
+	display: flex;
+	flex-direction: column;
+	gap: $grid-unit-30;
+	padding: $grid-unit-20;
+
+	@include break-medium {
+		gap: $grid-unit-20;
+	}
+
+	@include break-small {
+		padding-inline: $grid-unit-10;
+	}
+}
+
+#ppadvp-admin-root .ppadvp-settings-card {
+	background-color: $white;
+	border-radius: $radius-medium;
+	box-shadow: $elevation-x-small;
+
+	margin-block-end: 0 !important;
+	
+	border: $border-width solid $gray-200;
+	position: relative;
+	z-index: 1;
+
+	animation: ppadvpSettingsCard 0.2s ease-out;
+	animation-fill-mode: forwards;
+
+	@keyframes ppadvpSettingsCard {
+
+		from { 
+			opacity: 0;
+			transform: translateY(calc($grid-unit-20 * -1)); 
+		}
+
+		to { 
+			opacity: 1;
+			transform: translateY(0); 
+		}
+	}
+
+	&:nth-of-type(1) {
+		z-index: 4;
+	}
+
+	&:nth-of-type(2) {
+		z-index: 3;
+	}
+
+	&:nth-of-type(3) {
+		z-index: 2;
+	}
+
+	&-header {
+		position: relative;
+		min-height: 70px;
+		padding-inline: $grid-unit-20;
+		padding-block: $grid-unit-20;
+		
+		h2 {
+			margin: 0;
+			color: $gray-900;
+			white-space: nowrap;
+
+		    display: flex;
+    		align-items: center;
+			
+			@include heading-custom();
+		}
+
+		&-badge {
+			display: inline-block;
+			color: $white;
+			padding: $grid-unit-05 $grid-unit-10;
+			border-radius: $radius-medium;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			margin-inline-start: $grid-unit-15;
+			margin-block: -6px;
+			font-size: $font-size-x-small;
+			font-weight: $font-weight-medium;
+			line-height: $font-line-height-x-small;
+			background: var(--ppadvp-theme-gradient);
+			box-shadow: 0 2px 8px rgba(var(--ppadvp-theme-color-primary-rgb), 0.3);
+		}
+
+		.ppadvp-spinner {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+
+		&-actions {
+			display: flex;
+			align-items: center;
+			gap: $grid-unit-20;
+		}
+
+		@include break-medium {
+			min-height: 84px;
+			padding-inline: $grid-unit-20;
+		}
+
+		@include break-small {
+			padding-inline: $grid-unit-10;
+		}
+	}
+
+	&-body {
+		display: flex;
+		flex-direction: column;
+		gap: $grid-unit-20;
+
+		padding-inline: $grid-unit-20;
+		padding-block: $grid-unit-20;
+
+		@include break-small {
+			padding-inline: $grid-unit-10;
+		}
+	}
+
+	&-heading {
+		margin: 0;
+		color: $gray-900;
+
+		@include heading-medium;
+
+		&:has(+ .ppadvp-settings-card-description) {
+			margin-block-end: $grid-unit-05;
+		}
+	}
+
+	&-description {
+		margin: 0;
+		color: $gray-700;
+
+		@include body-small;
+	}
+}
+
+@include shared.ppadvp-button-base {
+
+    @include shared.ppadvp-button-icon-modifiers;
+    @include shared.ppadvp-button-variant-link;
+    @include shared.ppadvp-button-variant-secondary;
+    @include shared.ppadvp-button-variant-tertiary;
+    @include shared.ppadvp-button-variant-primary;
+    @include shared.ppadvp-button-variant-pro;
+}
+
+@include shared.ppadvp-modal-base;
+@include shared.ppadvp-text-control;
+@include shared.ppadvp-textarea-control;
+@include shared.ppadvp-label;
+@include shared.ppadvp-help;
+@include shared.ppadvp-is-required;
+@include shared.ppadvp-has-error;
+@include shared.ppadvp-radio-base;
+@include shared.ppadvp-checkbox-control;
+@include shared.ppadvp-spinner;
+@include shared.ppadvp-panel;

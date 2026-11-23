@@ -1,0 +1,242 @@
+/**
+ * Button mixins for PrimePlaced - Password Protect Site & Staging.
+ * Contains only definitions, no direct CSS output.
+ *
+ * @package primeplaced-advanced-password-protection
+ */
+
+/* stylelint-disable selector-class-pattern */
+@use "sass:color";
+@use "styles/variables" as *;
+@use "styles/helpers" as helpers;
+
+// ==========================================
+// 1. BASE BUTTON MIXIN
+// ==========================================
+@mixin ppadvp-button-base {
+
+    .ppadvp-button {
+
+        @include helpers.ppadvp-scope {
+            --ppadvp-btn-bg: transparent;
+            --ppadvp-btn-border: transparent;
+            --ppadvp-btn-color: inherit;
+            --ppadvp-btn-shadow: none;
+            --ppadvp-btn-transform: none;
+
+            --ppadvp-btn-hover-bg: var(--ppadvp-btn-bg);
+            --ppadvp-btn-hover-border: var(--ppadvp-btn-border);
+            --ppadvp-btn-hover-color: var(--ppadvp-btn-color);
+            --ppadvp-btn-hover-shadow: none;
+            --ppadvp-btn-hover-transform: none;
+
+            --ppadvp-btn-padding: #{$grid-unit-10} #{$grid-unit-15};
+
+            gap: $grid-unit-10;
+            font-size: $ppadvp-font-size-medium;
+            font-weight: $font-weight-medium;
+            border-radius: $radius-medium;
+            outline: none;
+            transition: 
+                background-color 0.2s ease-in-out, 
+                color 0.2s ease-in-out,
+                border-color 0.2s ease-in-out, 
+                box-shadow 0.2s ease-in-out, 
+                transform 0.2s ease-in-out,
+				opacity 0.2s ease-in-out;
+            
+            padding: var(--ppadvp-btn-padding);
+            background: var(--ppadvp-btn-bg);
+            border: 1px solid var(--ppadvp-btn-border);
+            color: var(--ppadvp-btn-color);
+            box-shadow: var(--ppadvp-btn-shadow);
+            transform: var(--ppadvp-btn-transform);
+
+			height: 36px;
+
+            &:disabled, 
+            &[aria-disabled="true"] {
+                opacity: 0.5;
+                box-shadow: none;
+            }
+
+            &:focus:not(:disabled) {
+                box-shadow: 
+                    inset 0 0 0 1px var(--wp-components-color-background, #fff), 
+                    0 0 0 var(--wp-admin-border-width-focus) var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9));
+            }
+
+			@media (hover: hover) {
+
+				&:hover:not(:disabled, [aria-disabled="true"], .is-pressed) {
+					background: var(--ppadvp-btn-hover-bg);
+					border-color: var(--ppadvp-btn-hover-border);
+					color: var(--ppadvp-btn-hover-color);
+					box-shadow: var(--ppadvp-btn-hover-shadow);
+					transform: var(--ppadvp-btn-hover-transform);
+				}
+			}
+
+			@include break-medium {
+				height: 42px;
+			}
+
+            @content;
+        }
+    }
+}
+
+// ==========================================
+// 2. ICON MODIFIERS MIXIN
+// ==========================================
+@mixin ppadvp-button-icon-modifiers {
+
+    &.has-icon {
+
+        &.has-text {
+            --ppadvp-btn-padding: #{$grid-unit-10} #{$grid-unit-15};
+        }
+
+        &:not(.has-text) {
+            --ppadvp-btn-padding: #{$grid-unit-10};
+			width: 36px;
+
+			@include break-large {
+				width: 42px;
+				min-width: 42px;
+
+				svg {
+					width: $icon-size * 1.5;
+            		height: $icon-size * 1.5;
+				}
+			}
+        }
+
+        &.is-small:not(.has-text) {
+            width: $icon-size * 1.2;
+            height: $icon-size * 1.2;
+
+			@include break-large {
+				width: $icon-size * 1.5;
+            	height: $icon-size * 1.5;
+				min-width: $icon-size * 1.5;
+			}
+        }
+    }
+
+    &:not(.is-compact) {
+
+        svg {
+            margin-inline: calc(#{$grid-unit-10} * -1);
+        }
+    }
+}
+
+// ==========================================
+// 3. VISUAL VARIANTS MIXINS
+// ==========================================
+
+@mixin ppadvp-button-variant-link {
+
+    &.is-link {
+		text-decoration: none;
+        --ppadvp-btn-hover-bg: var(--ppadvp-theme-gradient);
+        --ppadvp-btn-hover-border: var(--ppadvp-theme-color-primary);
+        --ppadvp-btn-hover-color: #{$white};
+
+		&.is-destructive {
+			--ppadvp-btn-hover-bg: #{$alert-red};
+            --ppadvp-btn-hover-border: #{$alert-red};
+		}
+    }
+}
+
+@mixin ppadvp-button-variant-secondary {
+
+    &.is-secondary {
+        --ppadvp-btn-border: var(--ppadvp-color-primary);
+        --ppadvp-btn-color: var(--ppadvp-color-primary);
+
+        --ppadvp-btn-hover-bg: var(--ppadvp-theme-gradient);
+        --ppadvp-btn-hover-border: var(--ppadvp-theme-color-primary);
+        --ppadvp-btn-hover-color: #{$white};
+
+        &.is-destructive {
+            --ppadvp-btn-border: #{$alert-red};
+            --ppadvp-btn-color: #{$alert-red};
+
+            --ppadvp-btn-hover-bg: #{$alert-red};
+            --ppadvp-btn-hover-border: #{$alert-red};
+        }
+
+        &.is-pro {
+            --ppadvp-btn-border: var(--ppadvp-theme-primary);
+            --ppadvp-btn-color: var(--ppadvp-theme-primary);
+        }
+    }
+}
+
+@mixin ppadvp-button-variant-tertiary {
+
+    &.is-tertiary {
+        --ppadvp-btn-bg: #{$white};
+        --ppadvp-btn-border: #{$gray-300};
+        --ppadvp-btn-color: #{$gray-800};
+
+        --ppadvp-btn-hover-bg: #{$gray-100};
+        --ppadvp-btn-hover-border: #{$gray-700};
+        --ppadvp-btn-hover-color: #{$gray-800};
+
+        &.is-destructive {  
+            --ppadvp-btn-hover-color: #{$alert-red};
+            --ppadvp-btn-hover-bg: #{color.mix($white, $alert-red, 95%)};
+            --ppadvp-btn-hover-border: #{$alert-red};
+        }
+    }
+}
+
+@mixin ppadvp-button-variant-primary {
+
+    &.is-primary:not(.is-pro) {
+        --ppadvp-btn-bg: var(--ppadvp-color-primary);
+        --ppadvp-btn-border: var(--ppadvp-color-primary);
+        --ppadvp-btn-color: #{$white};
+
+		// text-shadow: 0 1px 1px #a31c2d; WCAG
+
+        &:not(:disabled, [aria-disabled="true"]) {
+            --ppadvp-btn-shadow: 0 2px 8px rgba(var(--ppadvp-color-primary-rgb), 0.25);
+        }
+
+        --ppadvp-btn-hover-bg: var(--ppadvp-color-primary-dark);
+        --ppadvp-btn-hover-border: var(--ppadvp-color-primary-dark);
+        --ppadvp-btn-hover-shadow: 0 4px 12px rgba(var(--ppadvp-color-primary-dark-rgb), 0.35);
+        --ppadvp-btn-hover-transform: translateY(-1px);
+
+        &.is-destructive {
+            --ppadvp-btn-border: #{$alert-red};
+            --ppadvp-btn-bg: #{$alert-red};
+            --ppadvp-btn-color: #{$white};
+
+            --ppadvp-btn-hover-bg: #{$alert-red};
+            --ppadvp-btn-hover-border: #{$alert-red};
+            --ppadvp-btn-hover-shadow: 0 4px 12px #{rgba($alert-red, 0.35)};
+        }
+    }
+}
+
+@mixin ppadvp-button-variant-pro {
+
+    &.is-pro {
+        --ppadvp-btn-bg: var(--ppadvp-theme-gradient);
+        --ppadvp-btn-border: var(--ppadvp-theme-color-primary);
+        --ppadvp-btn-color: #{$white};
+
+        &:not(:disabled, [aria-disabled="true"]) {
+            --ppadvp-btn-shadow: 0 2px 8px rgba(var(--ppadvp-theme-color-primary-rgb), 0.25);
+        }
+
+        --ppadvp-btn-hover-shadow: 0 4px 12px rgba(var(--ppadvp-theme-color-primary-dark-rgb), 0.35);
+        --ppadvp-btn-hover-transform: translateY(-2px);
+    }
+}

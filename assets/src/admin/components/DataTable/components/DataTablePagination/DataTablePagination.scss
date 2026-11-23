@@ -1,0 +1,77 @@
+/* stylelint-disable selector-class-pattern */
+@use "styles/variables" as *;
+@use "styles/helpers" as helpers;
+
+.ppadvp-datatable__pagination {
+
+	@include helpers.ppadvp-scope {
+
+		position: relative;
+		z-index: 3;
+		display: flex;
+		gap: $grid-unit-10;
+		align-items: center;
+		justify-content: space-between;
+		width: fit-content;
+
+		&-select {
+
+			select {
+				appearance: none;
+				background: transparent;
+				box-sizing: border-box;
+				border: none;
+				color: currentcolor;
+				cursor: inherit;
+				display: block;
+				margin: 0;
+				width: 100%;
+				max-width: none;
+				height: $grid-unit-20;
+				min-height: $grid-unit-20;
+				padding: 0 $grid-unit-20 0 0;
+				field-sizing: content;
+
+				@include body-small;
+
+				@include break-medium {
+					height: 36px;
+					width: 36px;
+					min-height: 36px;
+				}
+			}
+
+			.components-input-control__backdrop {
+				border-color: transparent;
+			}
+
+			.components-input-control-suffix-wrapper {
+				padding: 0;
+			}
+		}
+
+		&-arrows:is(.ppadvp-button).is-tertiary {
+			--ppadvp-btn-color: #{$gray-900};
+			--ppadvp-btn-border: transparent;
+			--ppadvp-btn-hover-bg: var(--ppadvp-color-primary-lighter);
+    		--ppadvp-btn-hover-border: transparent;
+			--ppadvp-btn-hover-color: var(--ppadvp-color-primary);
+			padding: #{$grid-unit-05};
+		}
+
+		&-wrapper {
+			display: flex;
+			align-items: center;
+			gap: $grid-unit-10;		
+			
+			@include break-medium {
+				margin-right: auto;
+			}
+		}
+
+		@include break-medium {
+			
+			width: 100%;
+		}
+	}
+}

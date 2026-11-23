@@ -1,0 +1,55 @@
+/* stylelint-disable selector-class-pattern */
+@use "sass:color";
+@use "./variables.scss" as *;
+
+@mixin ppadvp-scope {
+
+	:is(
+		#ppadvp-admin-root, 
+		#ppadvp-widget-root, 
+		#ppadvp-pricing-root,
+		.ppadvp-settings-panel, 
+		.ppadvp-modal, 
+		.ppadvp-password-modal, 
+		.components-popover__fallback-container,
+		.ppadvp-date-dropdown-content
+	) & {
+		@content;
+	}
+}
+
+@mixin ppadvp-text-control-base {
+	border-radius: $radius-medium;
+	width: 100%;
+	padding: $grid-unit-10;
+	box-sizing: border-box;
+
+	@include body-medium();
+}
+
+@mixin ppadvp-input-label-base {
+	display: flex;
+	align-items: center;
+	padding: 0;
+	margin-block-end: $grid-unit-05;
+	text-transform: none;
+	color: $gray-900;
+	width: fit-content;
+
+	@include heading-medium;
+}
+
+@mixin ppadvp-badge-theme($base-color) {
+    color: color.adjust($base-color, $lightness: -15%);
+    background-color: color.mix($white, $base-color, 85%);
+	border-color: color.adjust($base-color, $lightness: -15%);
+}
+
+@mixin ppadvp-badge-theme-hover($base-color) {
+
+	&:hover:not(:disabled,[aria-disabled="true"], [aria-expanded="true"], .is-pressed) {
+    	color: color.adjust($base-color, $lightness: -25%);
+    	background-color: color.mix($white, $base-color, 75%);
+		border-color: color.adjust($base-color, $lightness: -25%);
+	}
+}

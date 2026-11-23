@@ -1,0 +1,36 @@
+@use "styles/variables" as *;
+@use "styles/helpers" as helpers;
+
+.ppadvp-toggle-group-control {
+
+	@include helpers.ppadvp-scope {
+
+		&::before {
+			background-color: var(--ppadvp-color-primary);
+		}
+
+		.components-toggle-group-control-option-base[aria-checked="false"] {
+			color: $gray-700;
+		}
+
+		.components-toggle-group-control-option-base[aria-checked="true"] {
+			color: $white;
+			font-weight: $font-weight-bold;
+		}
+	}
+}
+
+.ppadvp-cookies-section-toggle {
+
+	@include helpers.ppadvp-scope {
+		height: 36px;
+
+		@include break-medium {
+			height: 42px;
+		}
+
+		@include break-small {
+			height: 50px;
+		}
+	}
+}

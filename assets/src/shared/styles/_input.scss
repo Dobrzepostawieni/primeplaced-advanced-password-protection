@@ -1,0 +1,184 @@
+/* stylelint-disable selector-class-pattern */
+
+@use "styles/variables" as *;
+@use "styles/helpers" as helpers;
+
+
+@mixin ppadvp-text-control {
+
+	// --- Główne style kontrolki tekstowej ---
+	.ppadvp-text-control {
+		
+		@include helpers.ppadvp-scope {
+			
+			.components-text-control__input {
+				
+				@include helpers.ppadvp-text-control-base;
+				height: 40px;
+
+				@include break-medium {
+					height: 48px;
+				}
+			}
+			
+			.components-base-control__label {
+				
+				@include helpers.ppadvp-input-label-base;
+			}
+		}
+	}
+}
+	
+@mixin ppadvp-textarea-control {
+
+	.ppadvp-textarea-control {
+		
+		@include helpers.ppadvp-scope {
+			
+			.components-textarea-control__input {
+				
+				@include helpers.ppadvp-text-control-base;
+				resize: none;
+				
+			}
+			
+			.components-base-control__label {
+				
+				@include helpers.ppadvp-input-label-base;
+			}
+		}
+	}
+}
+
+@mixin ppadvp-label {
+	
+	.ppadvp-label {
+		
+		@include helpers.ppadvp-scope {
+			
+			@include helpers.ppadvp-input-label-base;
+		}
+	}
+}
+
+@mixin ppadvp-help {
+
+	.ppadvp-help {
+		
+		@include helpers.ppadvp-scope {
+			margin: 0;
+			
+			display: flex;
+			align-items: center;
+			color: $gray-700;
+			
+			@include body-small;
+			
+			margin-block-start: 2px;
+			margin-inline-start: 2px;
+			
+			&.is-error {
+				color: $alert-red;
+			}
+			
+			&:has(+ &) {
+				margin-bottom: $grid-unit-05;
+			}
+
+			&.has-icon {
+
+				&::before {
+					content: "\f534";
+					margin-right: $grid-unit-05;
+					-webkit-font-smoothing: antialiased;
+					vertical-align: middle;
+					
+					@include body-large;
+					
+					line-height: 1;
+					/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+					font-family: dashicons;
+				}
+			}
+
+			&.is-badge {
+				padding: $grid-unit-05 $grid-unit-15;
+				border-radius: $radius-medium;
+				margin-block-start: $grid-unit-10;
+				
+				width: fit-content;
+
+				@include helpers.ppadvp-badge-theme($gray-700)
+			}
+
+			&-link {
+				margin-inline: $grid-unit-05;
+			}
+		}
+	}
+}
+
+
+@mixin ppadvp-is-required {
+
+	// --- Modyfikatory Stanu: Wymagane ---
+	.is-required {
+		
+		@include helpers.ppadvp-scope {
+			
+			.components-base-control__label::after,
+			.components-form-token-field__label::after,
+			.components-input-control__label::after  {
+				content: "*";
+				color: $alert-red;
+				margin-left: $grid-unit-05;
+				font-weight: $font-weight-medium;
+			}
+		}
+	}
+}
+
+@mixin ppadvp-has-error {
+
+	.has-error {
+		
+		@include helpers.ppadvp-scope {
+			
+			.components-text-control__input {
+				border-color: $alert-red;
+			}
+			
+			.components-base-control__help,
+			.components-base-control__error {
+				margin: 0;
+				
+				display: flex;
+				align-items: center;
+				color: $alert-red;
+				
+				@include body-small;
+				
+				margin-block-start: 2px;
+				margin-inline-start: 2px;
+				
+				&::before {
+					content: "\f534";
+					margin-right: $grid-unit-05;
+					-webkit-font-smoothing: antialiased;
+					vertical-align: middle;
+					
+					@include body-large;
+					
+					line-height: 1;
+					/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+					font-family: dashicons;
+				}
+			}
+			
+			/* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+			& + .ppadvp-appearance-text-control-reset {
+				bottom: 22px;
+			}
+		}
+	}
+}

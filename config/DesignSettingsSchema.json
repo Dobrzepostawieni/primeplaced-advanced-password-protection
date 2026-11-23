@@ -1,0 +1,16 @@
+{
+	"bgColor": "#FEF2F2",
+	"logoId": 0,
+	"logoDisplay": true,
+	"logoWidth": 80,
+	"logoHeight": 80,
+	"label": "Enter password",
+	"inputPlaceholder": "Password...",
+	"title": "",
+	"errorMsg": "Invalid password.",
+	"errorColor": "#FFFFFF",
+	"errorBg": "#D63638",
+	"btnLabel": "Log in",
+	"btnColor": "#FFFFFF",
+	"btnBg": "#D63638"
+}

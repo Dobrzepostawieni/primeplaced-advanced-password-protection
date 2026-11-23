@@ -1,0 +1,108 @@
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable selector-class-pattern */
+@use "styles/variables" as *;
+@use "styles/helpers" as helpers;
+	
+.ppadvp-help-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $grid-unit-15;
+}
+
+
+
+.ppadvp-feedback-card {
+	background: linear-gradient(135deg, 
+		rgba(var(--ppadvp-theme-color-primary-rgb), 0.05), 
+		rgba(var(--ppadvp-theme-color-primary-dark-rgb), 0.05));
+    border: 2px solid var(--ppadvp-theme-color-primary);
+
+	.ppadvp-settings-card-body {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: $grid-unit-30;
+	}
+
+	&-title {
+		margin: 0 0 $grid-unit-10 0;
+		color: #4f46e5;
+
+		@include heading-large;
+		font-weight: $font-weight-bold;
+	}
+
+	&-desc {
+		margin: 0 0 $grid-unit-20 0;
+		color: $gray-700;
+
+		@include body-medium;
+		max-width: 600px;
+	}
+}
+
+.ppadvp-help-panels {
+
+	&-item {
+		display: flex;
+		align-items: center;
+		gap: $grid-unit-10;
+	}
+
+	&-badge {
+		display: inline-block;
+		color: $white;
+		padding: $grid-unit-05 $grid-unit-10;
+		border-radius: $radius-medium;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin-block: -6px;
+		background: var(--ppadvp-theme-gradient);
+		box-shadow: 0 2px 8px rgba(var(--ppadvp-theme-color-primary-rgb), 0.3);
+		
+		@include heading-small();
+
+		@include break-medium {
+			display: none;
+		}
+	}
+
+
+}
+
+@include break-medium {
+
+	.ppadvp-panel--help {
+
+		.components-panel__body {
+
+			.components-panel__arrow {
+				fill: $white;
+				background: var(--ppadvp-theme-gradient);
+				border-radius: $radius-medium;
+			}
+
+			@include helpers.ppadvp-scope {
+
+				&-title:hover {
+					
+					.components-panel__body-toggle span .components-panel__arrow {
+						fill: $white;
+					}
+				}
+
+				&.is-opened .components-panel__body-toggle span .components-panel__arrow {
+						fill: $white;
+				}
+			}
+		}
+
+		.components-panel__body-title .components-panel__body-toggle {
+
+			@include helpers.ppadvp-scope {
+				padding-right: calc(36px + 32px);
+			}
+		}
+	}
+}

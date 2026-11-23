@@ -1,0 +1,106 @@
+@use "styles/variables" as *;
+@use "styles/root" as *;
+@use "shared/styles" as shared;
+@include ppadvp-styles-root;
+@include ppadvp-styles-pro-root;
+
+:root {
+	--ppadvp-theme-color-primary: var(--ppadvp-color-primary);
+	--ppadvp-theme-color-primary-rgb: var(--ppadvp-color-primary-dark-rgb);
+	--ppadvp-theme-color-primary-dark: var(--ppadvp-color-primary-dark);
+	--ppadvp-theme-color-primary-dark-rgb: var(--ppadvp-color-primary-dark-rgb);
+	--ppadvp-theme-color-primary-lighter: var(--ppadvp-color-primary-lighter);
+	--ppadvp-theme-gradient: var(--ppadvp-gradient);
+}
+
+#ppadvp-widget-root {
+
+	.ppadvp-stats {
+
+		&-wrapper {
+			grid-template-columns: repeat(2, 1fr);
+			gap: $grid-unit-20;
+
+			@media only screen and (max-width: $break-mobile) {
+				grid-template-columns: repeat(1, 1fr);
+			}
+		}
+		
+		&-card {
+			padding: $grid-unit-10 $grid-unit-20;
+
+			&-title {
+				white-space: nowrap;
+			}
+		}
+		
+		&-title {
+
+			@include heading-small();
+		}
+		
+		&-value {
+
+			@include heading-large();
+			font-weight: $font-weight-bold;
+		}
+	}
+	
+	.ppadvp-widget-box {
+		display: flex;
+		flex-direction: column;
+		gap: $grid-unit-10;
+		margin-inline: calc($grid-unit-15 * -1);
+		padding: $grid-unit-15;
+		border-top: $border-width solid $gray-200;
+		
+		&:first-of-type {
+			border-bottom: $border-width solid $gray-200;
+		}
+		
+		&:last-of-type {
+			padding-bottom: 0;
+		}
+
+		&--footer {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+
+		&-badge {
+			display: inline-flex;
+			color: $white;
+			padding: $grid-unit-10 $grid-unit-20;
+			border-radius: $radius-medium;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			margin-inline-end: auto;
+			font-size: $font-size-small;
+			font-weight: $font-weight-medium;
+			line-height: $font-line-height-x-small;
+			background: var(--ppadvp-theme-gradient);
+			box-shadow: 0 2px 8px rgba(var(--ppadvp-theme-color-primary-rgb), 0.3)
+		}
+	}
+}
+
+@include shared.ppadvp-toggle-base;
+@include shared.ppadvp-passwords-settings;
+
+@include shared.ppadvp-button-base {	
+
+	@include shared.ppadvp-button-icon-modifiers;
+	@include shared.ppadvp-button-variant-secondary;
+	@include shared.ppadvp-button-variant-tertiary;
+	@include shared.ppadvp-button-variant-primary;
+	@include shared.ppadvp-button-variant-pro;
+}
+
+@include shared.ppadvp-modal-base;
+@include shared.ppadvp-text-control;
+@include shared.ppadvp-label;
+@include shared.ppadvp-help;
+@include shared.ppadvp-is-required;
+@include shared.ppadvp-has-error;
+@include shared.ppadvp-radio-base;
